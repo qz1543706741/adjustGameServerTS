@@ -1,12 +1,17 @@
+import { Request, Response } from 'express';
+import { createConnection } from 'typeorm';
+import { user_score } from '../src/entity/user_score';
+import { Curd } from '../public/utils/curd';
 const express = require('express');
 const router = express.Router();
-import { Request, Response } from 'express';
+const curd = new Curd();
+
 /* GET home page. */
-router.get('/', function (req: Request, res: Response): any {
-    // res.render('index', { title: 'Express' });
-    //console.log(res);
-    console.log(133);
-    res.json({ a: 'zhangsan' });
+router.get('/', async function (req: Request, res: Response) {
+    console.log('Inserting a new user into the database...');
+    const users = await curd.find(user_score);
+    res.json(users);
+    curd.close();
 });
 
 module.exports = router;
