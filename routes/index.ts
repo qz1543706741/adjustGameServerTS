@@ -1,21 +1,29 @@
 import { Request, Response } from 'express';
-import { createConnection } from 'typeorm';
-import { user_score } from '../src/entity/user_score';
+import { user_gameInfo } from '../src/entity/user_gameInfo';
 import { Curd } from '../public/utils/curd';
+import { user_info } from '../src/entity/user_info';
 const express = require('express');
 const router = express.Router();
 
+const curd = new Curd();
+interface userInfo {
+    openid?: string;
+}
+
 /* GET home page. */
-router.get('/', function (req: Request, res: Response): any {
-    createConnection()
-        .then(async (connection) => {
-            const curd = new Curd(connection);
-            console.log('Inserting a new user into the database...');
-            const users = await curd.find(user_score);
-            res.json(users);
-            connection.close();
-        })
-        .catch((error) => console.log(error));
+/**获取用户的信息
+ * @param  {} '/'
+ * @param  {Request} req
+ * @param  {Response} res
+ */
+router.get('/setUserInfo', async function (req: Request, res: Response) {
+    const userInfo: userInfo = <userInfo>await curd.findEntity<userInfo>(user_info, req.query, true);
+    await curd.addEntity(new user_gameInfo(), userInfo.openid);
+    //const userScore = await curd.findEntity(user_gameInfo, req.query, true);
+    //console.log(userScore);
+
+    //console.log(userScore);
+    res.json({ ...userInfo });
 });
 
 module.exports = router;

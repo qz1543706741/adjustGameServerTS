@@ -9,7 +9,7 @@
       "server": "node ./dist/bin/www",
       "watch": "tsc -w"
    },
-   "_moduleAliases":{
+   "_moduleAliases": {
       "@": "src"
    },
    "dependencies": {
