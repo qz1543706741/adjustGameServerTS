@@ -4,10 +4,11 @@
    "private": true,
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "nodemon -e ts --exec ts-node ./bin/server.ts",
+      "dev": "nodemon -e ts --exec ts-node ./src/server.ts",
       "build": "tsc",
-      "server": "node ./dist/bin/www",
-      "watch": "tsc -w"
+      "serve": "nodemon -e ts --exec ts-node ./src/server.ts",
+      "watch": "tsc -w",
+      "debug":"cross-env NODE_DEBUG=debug nodemon -e ts --exec ts-node ./src/server.ts"
    },
    "_moduleAliases": {
       "@": "src"
