@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 
-@Entity()
-export class user_info {
+@Entity('user_info')
+export class userInfo {
     @PrimaryColumn()
     openid!: string;
 

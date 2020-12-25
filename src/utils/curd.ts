@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { Connection, createConnection, EntityTarget, Entity } from 'typeorm';
-import { user_gameInfo } from '../../src/entity/user_gameInfo';
 
 /**
  * 描述
@@ -25,15 +24,21 @@ export class Curd<Entity> {
      * @returns {Object}
      */
     findEntity<Entity>(entity: EntityTarget<Entity>, options?: Object, isResultOnly: boolean = false) {
-        if (isResultOnly) return this.connection.manager.findOne<Entity>(entity, options);
+        if (isResultOnly) return this.connection.manager.findOne<Entity>(entity, options).catch((error) => console.log(error));
         return this.connection.manager.find<Entity>(entity, options);
     }
 
-    addEntity(entity: Entity, options?: Object | string) {
-        this.connection.manager.insert(user_gameInfo, {
-            openid: options?.toString()
-        });
-        return this.connection.manager.save(entity);
+    addEntity(entity: EntityTarget<Entity>, options?: Object | string) {
+        // try {
+        //     return this.connection.manager.insert(
+        //         user_gameInfo,
+        //         {
+        //             openid: <string>options
+        //         } || <Object>options
+        //     );
+        // } catch (error) {
+        //     return error;
+        // }
     }
 
     /**
