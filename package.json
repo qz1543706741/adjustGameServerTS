@@ -7,7 +7,8 @@
       "dev": "nodemon -e ts --exec ts-node ./src/server.ts",
       "build": "tsc",
       "serve": "nodemon -e ts --exec ts-node ./src/server.ts",
-      "watch": "tsc -w"
+      "watch": "tsc -w",
+      "debug":"cross-env NODE_DEBUG=debug nodemon -e ts --exec ts-node ./src/server.ts"
    },
    "_moduleAliases": {
       "@": "src"
