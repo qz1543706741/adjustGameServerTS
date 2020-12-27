@@ -10,6 +10,7 @@ createConnection()
     .then(async () => {
         // create express app
         const app = express();
+        app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
 
         // register all application routes

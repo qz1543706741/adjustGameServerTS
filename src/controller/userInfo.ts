@@ -3,7 +3,7 @@ import { userInfo } from '../entity/userInfo';
 import { getRepository } from 'typeorm';
 
 export async function setUserInfo(req: Request, res: Response) {
-    const entity = await getRepository(userInfo).create(req.query);
+    const entity = await getRepository(userInfo).create(req.body);
     await getRepository(userInfo)
         .save(entity)
         .then((r) => res.json(r))

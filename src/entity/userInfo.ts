@@ -6,10 +6,13 @@ export class userInfo {
     openid!: string;
 
     @Column()
+    gender!: number;
+
+    @Column()
     nick_name!: string;
 
     @Column()
-    language!: number;
+    language!: string;
 
     @Column()
     city!: string;
