@@ -11,6 +11,24 @@ export class userGameInfo {
     score?: number;
 
     @Column({
+        type: 'boolean',
+        default: false
+    })
+    level_single?: boolean;
+
+    @Column({
+        type: 'boolean',
+        default: false
+    })
+    level_computer?: boolean;
+
+    @Column({
+        type: 'boolean',
+        default: false
+    })
+    level_player?: boolean;
+
+    @Column({
         type: 'varchar',
         default: +new Date() + ''
     })
