@@ -21,35 +21,43 @@ export class userBasicInfo {
     })
     undergraduate_rank?: number;
     @Column({
-        type: 'int'
+        type: 'varchar',
+        default: ''
     })
-    adjust_school_code?: number;
+    adjust_school_code?: string;
     @Column({
-        type: 'varchar'
+        type: 'varchar',
+        default: ''
     })
     adjust_school_name?: string;
     @Column({
-        type: 'int'
+        type: 'varchar',
+        default: ''
     })
-    adjust_major_code?: number;
+    adjust_major_code?: string;
     @Column({
-        type: 'varchar'
+        type: 'varchar',
+        default: ''
     })
     adjust_major_name?: string;
     @Column({
-        type: 'int'
+        type: 'varchar',
+        default: ''
     })
-    undergraduate_school_code?: number;
+    undergraduate_school_code?: string;
     @Column({
-        type: 'varchar'
+        type: 'varchar',
+        default: ''
     })
     undergraduate_school_name?: string;
     @Column({
-        type: 'int'
+        type: 'varchar',
+        default: ''
     })
-    undergraduate_major_code?: number;
+    undergraduate_major_code?: string;
     @Column({
-        type: 'varchar'
+        type: 'varchar',
+        default: ''
     })
     undergraduate_major_name?: string;
 }
