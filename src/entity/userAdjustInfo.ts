@@ -1,63 +1,46 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
-@Entity('user_basic_info')
-export class userBasicInfo {
+@Entity('user_adjust_info')
+export class userAdjustInfo {
     @PrimaryColumn({ type: 'varchar' })
     openid!: string;
-
-    @Column({
-        type: 'varchar'
-    })
-    nickname?: string;
-    @Column({
-        type: 'varchar'
-    })
-    age?: number;
-    @Column({
-        type: 'int'
-    })
-    adjust_score?: number;
-    @Column({
-        type: 'int'
-    })
-    undergraduate_rank?: number;
     @Column({
         type: 'varchar',
         default: ''
     })
-    adjust_school_code?: string;
+    adjust_school_code_01?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    adjust_school_name?: string;
+    adjust_school_name_01?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    adjust_major_code?: string;
+    adjust_school_code_02?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    adjust_major_name?: string;
+    adjust_school_name_02?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    undergraduate_school_code?: string;
+    adjust_school_code_03?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    undergraduate_school_name?: string;
+    adjust_school_name_03?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    undergraduate_major_code?: string;
+    adjust_school_code_04?: string;
     @Column({
         type: 'varchar',
         default: ''
     })
-    undergraduate_major_name?: string;
+    adjust_school_name_04?: string;
 }

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { userBasicInfo } from '../entity/userBasicInfo';
+import { userAdjustInfo } from '../entity/userAdjustInfo';
 import { getRepository } from 'typeorm';
 
-export async function setUserBasicInfo(req: Request, res: Response) {
-    const entity = await getRepository(userBasicInfo).create(req.body);
-    await getRepository(userBasicInfo)
+export async function setUserAdjustInfo(req: Request, res: Response) {
+    const entity = await getRepository(userAdjustInfo).create(req.body);
+    await getRepository(userAdjustInfo)
         .save(entity)
         .then((r) => res.json(r))
         .catch((error) => {
@@ -12,8 +12,8 @@ export async function setUserBasicInfo(req: Request, res: Response) {
         });
 }
 
-export async function getUserBasicInfo(req: Request, res: Response) {
-    await getRepository(userBasicInfo)
+export async function getUserAdjustInfo(req: Request, res: Response) {
+    await getRepository(userAdjustInfo)
         .findOne(req.query)
         .then((r) => res.json(r || null))
         .catch((error) => {
