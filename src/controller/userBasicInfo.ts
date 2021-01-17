@@ -3,7 +3,21 @@ import { userBasicInfo } from '../entity/userBasicInfo';
 import { getRepository } from 'typeorm';
 
 export async function setUserBasicInfo(req: Request, res: Response) {
-    const entity = await getRepository(userBasicInfo).create(req.body);
+    const temp = {};
+    Object.keys(req.body).forEach((key) => {
+        if (key.indexOf('info') > -1) {
+            Object.assign(temp, {
+                [key.replace('info', 'code')]: req.body[key].key,
+                [key.replace('info', 'name')]: req.body[key].value
+            });
+        } else {
+            Object.assign(temp, {
+                [key]: req.body[key]
+            });
+        }
+    });
+    console.log(temp);
+    const entity = await getRepository(userBasicInfo).create(temp);
     await getRepository(userBasicInfo)
         .save(entity)
         .then((r) => res.json(r))
