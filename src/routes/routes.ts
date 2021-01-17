@@ -2,6 +2,8 @@ import { getUserInfo, setUserInfo } from '../controller/userInfo';
 import { getUserGameInfo, setUserGameInfo } from '../controller/userGameInfo';
 import { getUserBasicInfo, setUserBasicInfo } from '../controller/userBasicInfo';
 import { getUserAdjustInfo, setUserAdjustInfo } from '../controller/userAdjustInfo';
+import { getSchoolMajorInfo } from '../controller/schoolMajorInfo';
+import { getSubjectInfo } from '../controller/subjectInfo';
 /**
  * All application routes.
  */
@@ -45,5 +47,15 @@ export const AppRoutes = [
         path: '/setUserAdjustInfo',
         method: 'post',
         action: setUserAdjustInfo
+    },
+    {
+        path: '/getSchoolMajorInfo',
+        method: 'get',
+        action: getSchoolMajorInfo
+    },
+    {
+        path: '/getSubjectInfo',
+        method: 'get',
+        action: getSubjectInfo
     }
 ];

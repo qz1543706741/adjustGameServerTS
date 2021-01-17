@@ -8,13 +8,15 @@
       "build": "tsc",
       "serve": "nodemon -e ts --exec ts-node ./src/server.ts",
       "watch": "tsc -w",
-      "debug": "cross-env NODE_DEBUG=debug nodemon -e ts --exec ts-node ./src/server.ts"
+      "debug": "cross-env NODE_DEBUG=debug nodemon -e ts --exec ts-node ./src/server.ts",
+      "typeorm":"typeorm-cli"
    },
    "_moduleAliases": {
       "@": "src"
    },
    "dependencies": {
       "@types/mysql": "^2.15.16",
+      "class-validator": "^0.13.1",
       "cookie-parser": "~1.4.4",
       "debug": "~2.6.9",
       "express": "~4.16.1",
