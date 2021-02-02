@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { Request, Response } from 'express';
 import { AppRoutes } from './routes/routes';
-
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -19,7 +18,7 @@ createConnection()
         route
           .action(request, response, connection)
           .then(() => next)
-          .catch((err) => {
+          .catch((err: string | undefined) => {
             const { message } = new Error(err);
             response.status(400).json(message);
           });

@@ -9,7 +9,7 @@
       "serve": "nodemon -e ts --exec ts-node ./src/server.ts",
       "watch": "tsc -w",
       "debug": "cross-env NODE_DEBUG=debug nodemon -e ts --exec ts-node ./src/server.ts",
-      "typeorm":"typeorm-cli"
+      "typeorm": "typeorm-cli"
    },
    "_moduleAliases": {
       "@": "src"
@@ -22,6 +22,7 @@
       "express": "~4.16.1",
       "http-errors": "~1.6.3",
       "jade": "~1.11.0",
+      "module-alias": "^2.2.2",
       "morgan": "~1.9.1",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
