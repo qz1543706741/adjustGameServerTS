@@ -1,10 +1,10 @@
 import { majorCourse } from '@/entity/majorCourse';
+import { log } from 'console';
 import { Request, Response } from 'express';
 
 import { Connection } from 'typeorm';
 
 export async function getAdjustDetail(req: Request, res: Response, connection: Connection) {
-  let temp: any = [];
   await new Promise<any>(async (resolve, reject) => {
     for (const element in req.body) {
       await connection
@@ -14,7 +14,8 @@ export async function getAdjustDetail(req: Request, res: Response, connection: C
           where: { schoolCode: req.body[element].schoolCode, majorCode: req.body[element].majorCode }
         })
         .then((r: any) => {
-          temp = temp.concat(r);
+          // temp = temp.concat(r);
+          req.body[element].temp = r;
         })
         .catch((error: any) => {
           reject(error);
@@ -23,27 +24,28 @@ export async function getAdjustDetail(req: Request, res: Response, connection: C
     }
     resolve(1);
   });
+  console.log(req.body);
   const result = req.body.map((item: any) => {
     const tempObj = {
       schoolCode: item.schoolCode,
       schoolName: item.schoolName,
       majorCode: item.majorCode,
       majorName: item.majorName,
-      politicsCours: new Array(),
-      foreignCourse: new Array(),
-      majorCourse_1: new Array(),
-      majorCourse_2: new Array()
+      subject_info: [
+        { name: 'politicsCourse', list: new Array() },
+        { name: 'foreignCourse', list: new Array() },
+        { name: 'majorCourse_1', list: new Array() },
+        { name: 'majorCourse_2', list: new Array() }
+      ]
     };
-    temp.forEach((element: any) => {
-      tempObj.politicsCours.push(element.politicsCourse);
-      tempObj.foreignCourse.push(element.foreignCourse);
-      tempObj.majorCourse_1.push(element.majorCourse_1);
-      tempObj.majorCourse_2.push(element.majorCourse_2);
+    item.temp.forEach((element: any) => {
+      tempObj.subject_info[0].list.push(element.politicsCourse);
+      tempObj.subject_info[1].list.push(element.foreignCourse);
+      tempObj.subject_info[2].list.push(element.majorCourse_1);
+      tempObj.subject_info[3].list.push(element.majorCourse_2);
     });
-    tempObj.politicsCours = Array.from(new Set(tempObj.politicsCours));
-    tempObj.foreignCourse = Array.from(new Set(tempObj.foreignCourse));
-    tempObj.majorCourse_1 = Array.from(new Set(tempObj.majorCourse_1));
-    tempObj.majorCourse_2 = Array.from(new Set(tempObj.majorCourse_2));
+    //去重
+    tempObj.subject_info.forEach((item) => (item.list = Array.from(new Set(item.list))));
     return tempObj;
   });
 
